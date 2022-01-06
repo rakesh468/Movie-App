@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const formvalidationSchema = yup.object({
+export const formvalidationSchema = yup.object({
   name: yup.string().required("Name Required"),
   poster: yup.string().required("URL required"),
   rating: yup.number().min(0).max(10).required("Rating Required"),
@@ -100,7 +100,7 @@ export function Addmovie() {
         error={errors.summary && touched.summary}
       />
       {errors.summary && touched.summary && errors.summary}
-      <Button type="submit" variant="outlined">
+      <Button type="submit" variant="contained">
         Add movie
       </Button>
     </form>

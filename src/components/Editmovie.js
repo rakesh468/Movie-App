@@ -3,6 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
+import {useFormik} from "formik";
+import { formvalidationSchema } from "./Addmovie";
 
 export function Editmovie() {
   const { id } = useParams();
@@ -22,64 +24,93 @@ export function Editmovie() {
 
 function Updatemovie({ movie }) {
   const history = useHistory();
-  const [name, setname] = useState(movie.name);
-  const [poster, setposter] = useState(movie.poster);
-  const [rating, setrating] = useState(movie.rating);
-  const [summary, setsummary] = useState(movie.summary);
-  const [trailer, settrailer] = useState(movie.trailer);
-  const editmovie = () => {
-    const updatemovielist = {
-      name,
-      poster,
-      rating,
-      summary,
-      trailer,
-    };
-    console.log(updatemovielist);
+  const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
+  useFormik({
+    initialValues: {
+      name: movie.name,
+      poster: movie.poster,
+      rating: movie.rating,
+      summary: movie.summary,
+      trailer: movie.trailer,
+    },
+    validationSchema: formvalidationSchema,
+    onSubmit: (updatedMovie) => {
+      console.log("onsubmit", updatedMovie);
+      editmovie(updatedMovie);
+    },
+  });
+  const editmovie = (updatedMovie) => {
+    
+    console.log(updatedMovie);
     fetch(`https://6166c4d613aa1d00170a66f1.mockapi.io/movies/${movie.id}`, {
       method: "PUT",
-      body: JSON.stringify(updatemovielist),
+      body: JSON.stringify(updatedMovie),
       headers: {
         "Content-Type": "application/json",
       },
     }).then(() => history.push("/movies"));
-    // history.push("/movies");
+    
   };
   return (
-    <div className="movie-form">
+    <form onSubmit={handleSubmit} className="movie-form">
       <TextField
+        id="name"
+        name="name"
         variant="standard"
-        value={name}
-        onChange={(event) => setname(event.target.value)}
+        value={values.name}
+        onChange={handleChange}
         label="Enter movie Name"
+        onBlur={handleBlur}
+        error={errors.name && touched.name}
       />
+      {errors.name && touched.name && errors.name}
       <TextField
+        id="poster"
+        name="poster"
         variant="standard"
-        value={poster}
-        onChange={(event) => setposter(event.target.value)}
+        value={values.poster}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={errors.poster && touched.poster}
         label="Enter poster URL"
       />
+      {errors.poster && touched.poster && errors.poster}
       <TextField
+        name="trailer"
+        id="trailer"
         variant="standard"
-        value={trailer}
-        onChange={(event) => settrailer(event.target.value)}
+        value={values.trailer}
+        onChange={handleChange}
+        onBlur={handleBlur}
         label="Enter Trailer URL"
+        error={errors.trailer && touched.trailer}
       />
+      {errors.trailer && touched.trailer && errors.trailer}
       <TextField
+        id="rating"
+        name="rating"
         variant="standard"
-        value={rating}
-        onChange={(event) => setrating(event.target.value)}
+        value={values.rating}
+        onChange={handleChange}
+        onBlur={handleBlur}
         label="Enter Rating"
+        error={errors.rating && touched.rating}
       />
+      {errors.rating && touched.rating && errors.rating}
       <TextField
+        id="summary"
+        name="summary"
         variant="standard"
-        value={summary}
-        onChange={(event) => setsummary(event.target.value)}
+        value={values.summary}
+        onChange={handleChange}
+        onBlur={handleBlur}
         label="Enter summary"
+        error={errors.summary && touched.summary}
       />
-      <Button variant="outlined" onClick={editmovie}>
+      {errors.summary && touched.summary && errors.summary}
+      <Button type="submit" variant="contained" color="success">
         Save
       </Button>
-    </div>
+    </form>
   );
 }
