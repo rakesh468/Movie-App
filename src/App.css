@@ -63,7 +63,7 @@
   
 }
 
-@media (max-width:750px){
+@media (max-width:600px){
   .app-bar{
     display: flex;
     flex-direction: column;
