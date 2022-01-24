@@ -66,6 +66,7 @@ function App() {
                 </Button>
                 <Button
                   variant="contanied"
+                  style={{marginLeft:"auto"}}
                   onClick={() => history.push("/login")}
                 >
                  <LoginIcon/> Log In
