@@ -38,7 +38,7 @@ export function Moviedetails() {
           </p>
         </div>
         <p className="summary">{movie.summary}</p>
-        <Button variant="outlined" onClick={() => history.goBack("/movies")}>
+        <Button variant="contained" onClick={() => history.goBack("/movies")}>
           <KeyboardBackspaceIcon />
           Back
         </Button>

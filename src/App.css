@@ -39,6 +39,7 @@
   margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
+  
 }
 
 .error {
@@ -54,21 +55,7 @@
   padding: 5px;
 }
 
-.app-bar{
-  display: flex;
-  flex-direction: row;
-  gap:10px;
-  width: 100%;
-  
-  
-}
-
-@media (max-width:600px){
-  .app-bar{
-    display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    gap:10px;
-  }
-  
+.App{
+  /* background-image: linear-gradient(to left, #972f19, #9f311d, #a73320, #af3524, #b73728, #be3a2b, #c43d2e, #cb4031, #d24434, #d94837, #e04d3b, #e7513e); */
+  background-color: #C40000;
 }
