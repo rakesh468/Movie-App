@@ -6,13 +6,15 @@ import { useState, useEffect } from "react";
 import {useFormik} from "formik";
 import { formvalidationSchema } from "./Addmovie";
 
+const API_URL = "https://movies-app-backendcode.herokuapp.com";
+
 export function Editmovie() {
   const { id } = useParams();
 
   const [movie, setmovie] = useState(null);
 
   useEffect(() => {
-    fetch(`https://6166c4d613aa1d00170a66f1.mockapi.io/movies/${id}`, {
+    fetch(`${API_URL}/movies/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -42,7 +44,7 @@ function Updatemovie({ movie }) {
   const editmovie = (updatedMovie) => {
     
     console.log(updatedMovie);
-    fetch(`https://6166c4d613aa1d00170a66f1.mockapi.io/movies/${movie.id}`, {
+    fetch(`${API_URL}/movies/${movie.id}`, {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: {

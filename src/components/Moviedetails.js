@@ -6,13 +6,15 @@ import { useParams } from "react-router-dom";
 import { BasicRating } from "./BasicRating";
 import { useState, useEffect } from "react";
 
+const API_URL = "https://movies-app-backendcode.herokuapp.com";
+
 export function Moviedetails() {
   const history = useHistory();
   const { id } = useParams();
 
   const [movie, setmovie] = useState({});
   useEffect(() => {
-    fetch(`https://6166c4d613aa1d00170a66f1.mockapi.io/movies/${id}`, {
+    fetch(`${API_URL}/movies/${id}`, {
       method: "GET",
     })
       .then((data) => data.json())

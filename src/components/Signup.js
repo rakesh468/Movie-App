@@ -7,23 +7,33 @@ import * as yup from "yup";
 import "./Signup.css";
 
 const formValidationSchema = yup.object({
-    email: yup.string().required("Email Id Required"),
-    password: yup.string().min(8).max(12).required("Password Required"),
-  });
+  email: yup.string().required("Email Id Required"),
+  password: yup.string().min(8).max(12).required("Password Required"),
+});
 
-  export function Signup(){
-    // const history = useHistory();
-    const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
-      useFormik({
-        initialValues: { email: "", password: "" },
-        validationSchema: formValidationSchema,
-        onSubmit: (values) => {
-          console.log("Onsubmit", values);
-          
-        },
-      });
-      return(
-<div>
+const API_URL = "https://movies-app-backendcode.herokuapp.com";
+
+export function Signup() {
+  const history = useHistory();
+  const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
+    useFormik({
+      initialValues: { email: "", password: "" },
+      validationSchema: formValidationSchema,
+      onSubmit: (newuser) => {
+        console.log("Onsubmit", newuser);
+        signupuser(newuser);
+      },
+    });
+  const signupuser = (newuser) => {
+    console.log(newuser);
+    fetch(`${API_URL}/users/signup`, {
+      method: "POST",
+      body: JSON.stringify(newuser),
+      headers: { "Content-Type": "application/json" },
+    }).then(() => history.push("/login"))
+  };
+  return (
+    <div>
       <form className="signup-form" onSubmit={handleSubmit}>
         <TextField
           onChange={handleChange}
@@ -52,5 +62,5 @@ const formValidationSchema = yup.object({
         </Button>
       </form>
     </div>
-      )
-  }
+  );
+}

@@ -6,11 +6,13 @@ import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+const API_URL = "https://movies-app-backendcode.herokuapp.com";
+
 export function Movielist() {
   const [movies, setmovies] = useState([]);
 
   const getmovies = () => {
-    fetch("https://6166c4d613aa1d00170a66f1.mockapi.io/movies", {
+    fetch(`${API_URL}/movies`, {
       method: "GET",
     })
       .then((data) => data.json())
@@ -19,14 +21,14 @@ export function Movielist() {
   useEffect(getmovies, []);
 
   const deletemovie = (id) => {
-    fetch(`https://6166c4d613aa1d00170a66f1.mockapi.io/movies/${id}`, {
+    fetch(`${API_URL}/movies/${id}`, {
       method: "DELETE",
     }).then(() => getmovies());
   };
   const history = useHistory();
   return (
     <div className="movie-list">
-      {movies.map(({ name, poster, summary, rating, trailer, id }) => (
+      {movies.map(({ name, poster, summary, rating, trailer, id,_id }) => (
         <Movie
           name={name}
           poster={poster}
@@ -34,11 +36,11 @@ export function Movielist() {
           summary={summary}
           rating={rating}
           key={id}
-          id={id}
+          id={_id}
           deletebutton={
             <IconButton
               style={{ marginLeft: "auto" }}
-              onClick={() => deletemovie(id)}
+              onClick={() => deletemovie(_id)}
               color="error"
               aria-label="delete"
             >
@@ -49,7 +51,7 @@ export function Movielist() {
             <IconButton
               color="secondary"
               aria-label="Edit"
-              onClick={() => history.push("/movie/edit/" + id)}
+              onClick={() => history.push("/movie/edit/" + _id)}
             >
               <ModeEditIcon />
             </IconButton>

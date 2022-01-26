@@ -8,13 +8,13 @@
     justify-content: space-around;
     align-items: center;
     height: 75px;
-    /* background-image: linear-gradient(to left, #696665, #797573, #898482, #9a9391, #aba3a1, #b6aeac, #c2b9b8, #cdc4c3, #d6cdcc, #ded6d5, #e7dfde, #f0e8e7); */
-    background-color: #BEA6A0;
+    background-color: black;
 }
 .Logo{
     height: 70px;
     width: 90px;
     object-fit: cover;
+    cursor: pointer;
 }
 .nav-links{
     display: flex;
@@ -28,7 +28,7 @@
 .Contact,
 .About{
 text-decoration: none;
-color: black;
+color: white;
 font-size: 20px;
 padding:10px 20px;
 margin:0 10px;
@@ -36,6 +36,7 @@ cursor: pointer;
 font-size: 20px;
 font-weight: bolder;
 }
+
 
 .mobile-menu-icon{
     display: none;
@@ -45,8 +46,9 @@ font-weight: bolder;
     .Logo{
         display: flex;
         position: absolute;
-        top: 15px;
         left:35px;
+        
+
     }
     .nav-links{
         display: none;
@@ -55,7 +57,7 @@ font-weight: bolder;
         position: absolute;
         display: block;
         list-style: none;
-        background-color:#f03b44;
+        background-color:black;
         left: 0;
         top: 75px;
         transition: all 0.5s ease-out;
@@ -65,10 +67,11 @@ font-weight: bolder;
     .Contact,
     .About,
     .Skills{
-        color: black;
+        color: white;
         text-align: center;
         width: 100%;
         transition: all 0.5 ease;
+       
     }
     .mobile-menu-icon{
         display: block;

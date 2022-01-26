@@ -13,6 +13,8 @@ export const formvalidationSchema = yup.object({
   trailer: yup.string().required("URL Required"),
 });
 
+const API_URL = "https://movies-app-backendcode.herokuapp.com";
+
 export function Addmovie() {
   const history = useHistory();
 
@@ -34,7 +36,7 @@ export function Addmovie() {
   const addmovie = (newMovie) => {
     console.log(newMovie);
 
-    fetch("https://6166c4d613aa1d00170a66f1.mockapi.io/movies", {
+    fetch(`${API_URL}/movies`, {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: {
