@@ -21,7 +21,6 @@
   justify-content: space-around;
   gap: 10px;
   margin-top: 35px;
-  
 }
 
 .main-container {
@@ -29,22 +28,20 @@
   height: min-content;
   margin-top: 10px;
   margin-bottom: 10px;
-  transition:transform 100ms ease-in;
-  
+  transition: transform 100ms ease-in;
 }
-.main-container:hover{
-  transform:scale(1.02)
+.main-container:hover {
+  transform: scale(1.02);
 }
 .movie-form {
   display: flex;
   flex-direction: column;
-  gap:20px;
+  gap: 20px;
   align-items: stretch;
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 10px;
   margin-right: 10px;
-  
 }
 
 .error {
@@ -60,7 +57,6 @@
   padding: 5px;
 }
 
-.App{
-  
-  background-color: #F23142;
+.App {
+  background-color: #f23142;
 }

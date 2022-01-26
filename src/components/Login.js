@@ -36,7 +36,7 @@ export function Login() {
         const { token } = response;
         localStorage.setItem("token", token);
         history.push("/movies");
-      })
+      });
   };
   return (
     <div>

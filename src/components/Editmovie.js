@@ -3,7 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
-import {useFormik} from "formik";
+import { useFormik } from "formik";
 import { formvalidationSchema } from "./Addmovie";
 
 const API_URL = "https://movies-app-backendcode.herokuapp.com";
@@ -27,22 +27,21 @@ export function Editmovie() {
 function Updatemovie({ movie }) {
   const history = useHistory();
   const { handleChange, handleBlur, handleSubmit, values, errors, touched } =
-  useFormik({
-    initialValues: {
-      name: movie.name,
-      poster: movie.poster,
-      rating: movie.rating,
-      summary: movie.summary,
-      trailer: movie.trailer,
-    },
-    validationSchema: formvalidationSchema,
-    onSubmit: (updatedMovie) => {
-      console.log("onsubmit", updatedMovie);
-      editmovie(updatedMovie);
-    },
-  });
+    useFormik({
+      initialValues: {
+        name: movie.name,
+        poster: movie.poster,
+        rating: movie.rating,
+        summary: movie.summary,
+        trailer: movie.trailer,
+      },
+      validationSchema: formvalidationSchema,
+      onSubmit: (updatedMovie) => {
+        console.log("onsubmit", updatedMovie);
+        editmovie(updatedMovie);
+      },
+    });
   const editmovie = (updatedMovie) => {
-    
     console.log(updatedMovie);
     fetch(`${API_URL}/movies/${movie.id}`, {
       method: "PUT",
@@ -51,7 +50,6 @@ function Updatemovie({ movie }) {
         "Content-Type": "application/json",
       },
     }).then(() => history.push("/movies"));
-    
   };
   return (
     <form onSubmit={handleSubmit} className="movie-form">
