@@ -28,7 +28,7 @@ export function Login() {
     fetch(`${API_URL}/users/login`, {
       method: "POST",
       body: JSON.stringify(newuser),
-      headers: { "Content-Type": "appplication/json" },
+      headers: { "Content-Type": "application/json" },
     })
       .then((data) => data.json())
       //storing token in local storage//

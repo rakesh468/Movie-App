@@ -9,6 +9,10 @@
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
+  
+}
+body{
+  background-color: blanchedalmond;
 }
 .login-form {
   display: flex;
@@ -16,6 +20,4 @@
   align-items: stretch;
   gap: 10px;
 }
-body {
-  background-color: #f23142;
-}
+

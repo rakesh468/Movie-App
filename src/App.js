@@ -17,6 +17,7 @@ import { Moviedetails } from "./components/Moviedetails";
 import { Editmovie } from "./components/Editmovie";
 import { Login } from "./components/Login";
 import { Signup } from "./components/Signup";
+import { Home } from "./Home";
 
 function App() {
   return (
@@ -30,7 +31,9 @@ function App() {
           <Route exact path="/login">
             <Login />
           </Route>
-          <Route exact path="/"></Route>
+          <Route exact path="/">
+            <Home/>
+          </Route>
           <Route path="/addmovie">
             <Addmovie />
           </Route>
