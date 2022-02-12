@@ -5,6 +5,8 @@ import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "./Signup.css";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const formValidationSchema = yup.object({
   email: yup.string().required("Email Id Required"),
@@ -14,6 +16,19 @@ const formValidationSchema = yup.object({
 const API_URL = "https://movies-app-backendcode.herokuapp.com";
 
 export function Signup() {
+  const [open, setOpen] = React.useState(false);
+  const [Msg, setMsg] = React.useState("");
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  })
   const history = useHistory();
   const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
     useFormik({
@@ -30,9 +45,10 @@ export function Signup() {
       method: "POST",
       body: JSON.stringify(newuser),
       headers: { "Content-Type": "application/json" },
-    }) .then((response)=>{
+    })
+    .then((response)=>{
       if(response.status===200){
-        setMsg({Message:"User Created Successfully" ,status:"success"});
+        setMsg({Message:"User Created Successfully",status:"success"});
         setOpen(true);
         setTimeout(()=>history.push("/login"),3000);
       }else{
