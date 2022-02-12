@@ -30,10 +30,24 @@ export function Signup() {
       method: "POST",
       body: JSON.stringify(newuser),
       headers: { "Content-Type": "application/json" },
-    }).then(() => history.push("/login"))
-  };
+    }) .then((response)=>{
+      if(response.status===200){
+        setMsg({Message:"User Created Successfully" ,status:"success"});
+        setOpen(true);
+        setTimeout(()=>history.push("/login"),3000);
+      }else{
+        setMsg({Message:"Invalide Credentials",status:"error"});
+        setOpen(true);
+      }
+    })
+     .catch((err)=>{
+       setMsg({message:"error",status:"error"});
+       setOpen(true);
+     });
+     }
   return (
     <div>
+      <div>
       <form className="signup-form" onSubmit={handleSubmit}>
         <TextField
           onChange={handleChange}
@@ -61,6 +75,21 @@ export function Signup() {
           Sign up
         </Button>
       </form>
+    </div>
+    <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={Msg.status}
+          sx={{ width: "100%" }}
+        >
+          {Msg.Message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
