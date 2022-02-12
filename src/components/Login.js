@@ -4,6 +4,9 @@ import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import "./Login.css";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import React from "react";
 
 const formValidationSchema = yup.object({
   email: yup.string().required("Email Id Required"),
@@ -13,6 +16,19 @@ const formValidationSchema = yup.object({
 const API_URL = "https://movies-app-backendcode.herokuapp.com";
 
 export function Login() {
+  const [open, setOpen] = React.useState(false);
+  const [Msg, setMsg] = React.useState("");
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
   const history = useHistory();
   const { handleChange, handleSubmit, handleBlur, values, errors, touched } =
     useFormik({
@@ -30,16 +46,24 @@ export function Login() {
       body: JSON.stringify(newuser),
       headers: { "Content-Type": "application/json" },
     })
-      .then((data) => data.json())
-      //storing token in local storage//
-      .then((response) => {
-        const { token } = response;
-        localStorage.setItem("token", token);
-        history.push("/movies");
-      });
-  };
+    .then((response)=>{
+      if(response.status===200){
+        setMsg({Message:"Login Successfully",status:"success"});
+        setOpen(true);
+        setTimeout(()=>history.push("/movies"),3000);
+      }else{
+        setMsg({Message:"Invalide Credentials",status:"error"});
+        setOpen(true);
+      }
+    })
+     .catch((err)=>{
+       setMsg({message:"error",status:"error"});
+       setOpen(true);
+     });
+     }
   return (
     <div>
+      <div>
       <form className="login-form" onSubmit={handleSubmit}>
         <TextField
           onChange={handleChange}
@@ -71,6 +95,21 @@ export function Login() {
           Sign up
         </Button>
       </form>
+    </div>
+    <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+      >
+        <Alert
+          onClose={handleClose}
+          severity={Msg.status}
+          sx={{ width: "100%" }}
+        >
+          {Msg.Message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
