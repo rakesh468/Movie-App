@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import CloseIcon from "@mui/icons-material/Close";
 import { useHistory } from "react-router-dom";
 
@@ -32,7 +32,7 @@ export function Navbar() {
         className="mobile-menu-icon"
         onClick={() => setismobile(!ismobile)}
       >
-        {ismobile ? <CloseIcon /> : <MenuOutlinedIcon />}
+        {ismobile ? <CloseIcon /> : < MenuRoundedIcon htmlColor="black" />}
       </button>
       <img
         onClick={() => history.push("/movies")}
