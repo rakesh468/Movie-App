@@ -35,7 +35,7 @@ export function Navbar() {
         {ismobile ? <CloseIcon /> : < MenuRoundedIcon htmlColor="black" />}
       </button>
       <img
-        onClick={() => history.push("/movies")}
+        onClick={() => history.push("/")}
         src="https://download.logo.wine/logo/Netflix/Netflix-Logo.wine.png"
         className="Logo"
         alt="logo"

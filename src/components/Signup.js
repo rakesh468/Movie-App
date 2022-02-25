@@ -62,15 +62,17 @@ export function Signup() {
      });
      }
   return (
-    <div>
-      <div>
-      <form className="signup-form" onSubmit={handleSubmit}>
+    <div className="sign-main">
+      <div className="sign-sub-main">
+     
+      <form className="sign-form" onSubmit={handleSubmit}>
+      <header>Sign up</header>
         <TextField
           onChange={handleChange}
           onBlur={handleBlur}
           id="email"
           type="email"
-          variant="standard"
+          variant="filled"
           label="Enter Email"
           error={errors.email && touched.email}
           value={values.email}
@@ -82,7 +84,7 @@ export function Signup() {
           value={values.password}
           id="password"
           type="password"
-          variant="standard"
+          variant="filled"
           label="Enter Password"
           error={errors.password && touched.password}
           helperText={errors.password && touched.password && errors.password}

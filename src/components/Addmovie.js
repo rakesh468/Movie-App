@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import "./Addmovie.css";
 
 export const formvalidationSchema = yup.object({
   name: yup.string().required("Name Required"),

@@ -4,7 +4,8 @@ import "./Home.css";
 export function Home() {
   return (
     <div className="home">
-     <img  className="home-image" src="https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bmV0ZmxpeHxlbnwwfHwwfHw%3D&w=1000&q=80" alt="poster"/>
+    {/* <h1> <span style={{color:"red"}}>Welcome to Netflix </span></h1> */}
+    <img src="https://www.allconnect.com/wp-content/uploads/2020/02/netflix-review-hero-image-0224.png" alt="poster"className="poster-image"/>
     </div>
   );
 }

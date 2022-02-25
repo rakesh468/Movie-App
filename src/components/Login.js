@@ -6,6 +6,8 @@ import * as yup from "yup";
 import "./Login.css";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import LoginIcon from "@mui/icons-material/Login";
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import React from "react";
 
 const formValidationSchema = yup.object({
@@ -62,40 +64,48 @@ export function Login() {
      });
      }
   return (
-    <div>
-      <div>
-      <form className="login-form" onSubmit={handleSubmit}>
-        <TextField
-          onChange={handleChange}
-          onBlur={handleBlur}
-          id="email"
-          type="email"
-          variant="standard"
-          label="Enter Email"
-          error={errors.email && touched.email}
-          value={values.email}
-          helperText={errors.email && touched.email && errors.email}
-        />
-        <TextField
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.password}
-          id="password"
-          type="password"
-          variant="standard"
-          label="Enter Password"
-          error={errors.password && touched.password}
-          helperText={errors.password && touched.password && errors.password}
-        />
-        <Button variant="contained" color="success" type="submit">
-          Log In
-        </Button>
-        <p>Create an Account?</p>
-        <Button onClick={() => history.push("/signup")} variant="contained">
-          Sign up
-        </Button>
-      </form>
-    </div>
+    <div className="mains">
+      <div className="sub-mains">
+        <form onSubmit={handleSubmit}>
+          <header>Login</header>
+          <TextField
+            id="email"
+            name="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            type="email"
+            label="Enter Email Id"
+            error={errors.email && touched.email}
+            helperText={errors.email && touched.email && errors.email}
+          />
+
+          <TextField
+            id="password"
+            name="password"
+            type="password"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            label="Enter Password"
+            error={errors.password && touched.password}
+            value={values.password}
+            helperText={errors.password && touched.password && errors.password}
+          />
+          <Button type="submit" variant="contained" color="success">
+            <LoginIcon />
+            Login
+          </Button>
+          <p>Create an Account ?</p>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={() => history.push("/signup")}
+          >
+            <PersonAddAltIcon />
+            Sign up
+          </Button>
+          </form>
+      </div>
     <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={open}
