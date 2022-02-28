@@ -44,38 +44,30 @@ export function Login() {
   const loginuser = (newuser) => {
     console.log(newuser);
     fetch(`${API_URL}/users/login`, {
-
       method: "POST",
       body: JSON.stringify(newuser),
       headers: { "Content-Type": "application/json" },
- })
- .then((response)=>{
-    if(response.status===200){
-    return response.json()
-    }
-     else{
-         setMsg({Message:"Invalid Credentials",status:"error"});
-       setOpen(true);
-      }
- })
-    .then((response)=>{
-      console.log(response)
-      // if(response.status===200){
-         localStorage.setItem('token',response.token)
-      //   // console.log(response.body)//
-        setMsg({Message:"Login Successfully",status:"success"});
-        setOpen(true);
-        setTimeout(()=>history.push("/movies"),3000);
-      // }else{
-      //   setMsg({Message:"Invalide Credentials",status:"error"});
-      //   setOpen(true);
-      // }
     })
-     .catch((err)=>{
-       setMsg({message:"error",status:"error"});
-       setOpen(true);
-     });
-     }
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          setMsg({ Message: "Invalid Credentials", status: "error" });
+          setOpen(true);
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("token", response.token);
+        setMsg({ Message: "Login Successfully", status: "success" });
+        setOpen(true);
+        setTimeout(() => history.push("/movies"), 3000);
+      })
+      .catch((err) => {
+        setMsg({ message: "error", status: "error" });
+        setOpen(true);
+      });
+  };
   return (
     <div className="mains">
       <div className="sub-mains">
@@ -117,9 +109,9 @@ export function Login() {
             <PersonAddAltIcon />
             Sign up
           </Button>
-          </form>
+        </form>
       </div>
-    <Snackbar
+      <Snackbar
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={open}
         autoHideDuration={6000}
