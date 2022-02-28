@@ -16,6 +16,8 @@ export function Editmovie() {
   useEffect(() => {
     fetch(`${API_URL}/movies/${id}`, {
       method: "GET",
+      headers:{"X-auth-token":localStorage.getItem('token')}
+
     })
       .then((data) => data.json())
       .then((mvs) => setmovie(mvs));
@@ -47,6 +49,7 @@ function Updatemovie({ movie }) {
       method: "PUT",
       body: JSON.stringify(updatedMovie),
       headers: {
+        "X-auth-token":localStorage.getItem('token'),
         "Content-Type": "application/json",
       },
     }).then(() => history.push("/movies"));

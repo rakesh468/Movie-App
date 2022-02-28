@@ -44,19 +44,32 @@ export function Login() {
   const loginuser = (newuser) => {
     console.log(newuser);
     fetch(`${API_URL}/users/login`, {
+
       method: "POST",
       body: JSON.stringify(newuser),
       headers: { "Content-Type": "application/json" },
-    })
+ })
+ .then((response)=>{
+    if(response.status===200){
+    return response.json()
+    }
+     else{
+         setMsg({Message:"Invalid Credentials",status:"error"});
+       setOpen(true);
+      }
+ })
     .then((response)=>{
-      if(response.status===200){
+      console.log(response)
+      // if(response.status===200){
+         localStorage.setItem('token',response.token)
+      //   // console.log(response.body)//
         setMsg({Message:"Login Successfully",status:"success"});
         setOpen(true);
         setTimeout(()=>history.push("/movies"),3000);
-      }else{
-        setMsg({Message:"Invalide Credentials",status:"error"});
-        setOpen(true);
-      }
+      // }else{
+      //   setMsg({Message:"Invalide Credentials",status:"error"});
+      //   setOpen(true);
+      // }
     })
      .catch((err)=>{
        setMsg({message:"error",status:"error"});

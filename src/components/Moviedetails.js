@@ -16,6 +16,7 @@ export function Moviedetails() {
   useEffect(() => {
     fetch(`${API_URL}/movies/${id}`, {
       method: "GET",
+      headers:{"X-auth-token":localStorage.getItem('token')}
     })
       .then((data) => data.json())
       .then((mvs) => setmovie(mvs));

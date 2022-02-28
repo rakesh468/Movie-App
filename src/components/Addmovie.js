@@ -41,6 +41,7 @@ export function Addmovie() {
       method: "POST",
       body: JSON.stringify(newMovie),
       headers: {
+        "X-auth-token":localStorage.getItem('token'),
         "Content-Type": "application/json",
       },
     }).then(() => history.push("/movies"));

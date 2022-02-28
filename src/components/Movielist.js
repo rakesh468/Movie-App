@@ -14,6 +14,7 @@ export function Movielist() {
   const getmovies = () => {
     fetch(`${API_URL}/movies`, {
       method: "GET",
+      headers:{"X-auth-token":localStorage.getItem('token')}
     })
       .then((data) => data.json())
       .then((mv) => setmovies(mv));
@@ -22,7 +23,8 @@ export function Movielist() {
 
   const deletemovie = (id) => {
     fetch(`${API_URL}/movies/${id}`, {
-      method: "DELETE",
+     method: "DELETE",
+     headers:{"X-auth-token":localStorage.getItem('token')}
     }).then(() => getmovies());
   };
   const history = useHistory();
