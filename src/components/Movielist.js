@@ -14,7 +14,7 @@ export function Movielist() {
   const getmovies = () => {
     fetch(`${API_URL}/movies`, {
       method: "GET",
-      headers:{"X-auth-token":localStorage.getItem('token')}
+     
     })
       .then((data) => data.json())
       .then((mv) => setmovies(mv));
